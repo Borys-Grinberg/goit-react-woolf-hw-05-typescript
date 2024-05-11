@@ -5,24 +5,26 @@ type MenuIds = "first" | "second" | "last";
 
 type Menu = { id: MenuIds; title: string };
 
-type SelectedMenu = { id?: MenuIds }; // Доданий тип для SelectedMenu
+type SelectedMenu = { id?: MenuIds };
 
 const MenuSelectedContext = createContext<{ selectedMenu: SelectedMenu }>({
   selectedMenu: {},
 });
 
-type MenuAction = { onSelectedMenu: (selectedMenu: SelectedMenu) => void }; // Доданий тип для MenuAction
+type MenuAction = { onSelectedMenu: (selectedMenu: SelectedMenu) => void };
 
 const MenuActionContext = createContext<MenuAction>({
   onSelectedMenu: noop,
 });
 
 type PropsProvider = {
-  children: React.ReactNode; // Вірний тип для children
+  children: React.ReactNode;
 };
 
 function MenuProvider({ children }: PropsProvider) {
-  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>({});
+  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>({
+    id: "first",
+  });
 
   const menuContextAction = useMemo(
     () => ({
