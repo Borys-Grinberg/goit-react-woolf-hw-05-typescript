@@ -5,10 +5,10 @@ type MenuIds = "first" | "second" | "last";
 
 type Menu = { id: MenuIds; title: string };
 
-type SelectedMenu = { id?: MenuIds };
+type SelectedMenu = { id: MenuIds };
 
 const MenuSelectedContext = createContext<{ selectedMenu: SelectedMenu }>({
-  selectedMenu: {},
+  selectedMenu: { id: "first" },
 });
 
 type MenuAction = { onSelectedMenu: (selectedMenu: SelectedMenu) => void };
